@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Outputs\RT_Thread.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Outputs\RT_Thread.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Jul 20 09:44:18 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Jul 20 14:38:59 2022
 <BR><P>
 <H3>Maximum Stack Usage =         32 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -225,7 +225,7 @@ Global Symbols
 
 <P><STRONG><a name="[5e]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; TestIoInt &rArr; GPIO_Init
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; TestPinInt &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -546,11 +546,11 @@ Global Symbols
 <P><STRONG><a name="[71]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, scm4xx_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TestIoInt
+<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TestPinInt
 </UL>
 
 <P><STRONG><a name="[6f]"></a>GPIO_StructInit</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, scm4xx_gpio.o(i.GPIO_StructInit))
-<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TestIoInt
+<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TestPinInt
 </UL>
 
 <P><STRONG><a name="[6]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, scm4xx_it.o(i.MemManage_Handler))
@@ -560,7 +560,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_scm402fb.o(RESET)
 </UL>
 <P><STRONG><a name="[70]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, scm4xx_rcc.o(i.RCC_APB2PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TestIoInt
+<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TestPinInt
 </UL>
 
 <P><STRONG><a name="[6c]"></a>RCC_StepModeCmd</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, scm4xx_rcc.o(i.RCC_StepModeCmd))
@@ -582,8 +582,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_scm402fb.o(.text)
 </UL>
-<P><STRONG><a name="[6e]"></a>TestIoInt</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, main.o(i.TestIoInt))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = TestIoInt &rArr; GPIO_Init
+<P><STRONG><a name="[6e]"></a>TestPinInt</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, main.o(i.TestPinInt))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = TestPinInt &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_StructInit
@@ -609,9 +609,9 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_scm402fb.o(RESET)
 </UL>
 <P><STRONG><a name="[5f]"></a>main</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = main &rArr; TestIoInt &rArr; GPIO_Init
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = main &rArr; TestPinInt &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TestIoInt
+<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TestPinInt
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_init
 </UL>

@@ -94,20 +94,20 @@ void Delay_ms(u16 nms)
   }
 }
 
-void TestIoInt(void)
+void TestPinInt(void)
 {
-	GPIO_InitType io;
-	GPIO_StructInit(&io);
+	GPIO_InitType gpioInit;
+	GPIO_StructInit(&gpioInit);
 	RCC_APB2PeriphClockCmd(RCC_APB2PERIPH_GPIOE,ENABLE);
-	io.GPIO_Pins = GPIO_Pins_12;               /*!< Specifies the GPIO pins to be configured.
+	gpioInit.GPIO_Pins = GPIO_Pins_12;               /*!< Specifies the GPIO pins to be configured.
 																						This parameter can be any value of @ref GPIO_pins_define */
-	io.GPIO_MaxSpeed = GPIO_MaxSpeed_10MHz;  /*!< Specifies the speed for the selected pins.
+	gpioInit.GPIO_MaxSpeed = GPIO_MaxSpeed_10MHz;  /*!< Specifies the speed for the selected pins.
 																							This parameter can be a value of @ref GPIOMaxSpeed_Type */
-	io.GPIO_Mode = GPIO_Mode_OUT_PP;       
-	GPIO_Init(GPIOA,&io);
+	gpioInit.GPIO_Mode = GPIO_Mode_OUT_PP;       
+	GPIO_Init(GPIOE,&gpioInit);
 }
 
-void TestIoOut(u8 high)
+void TestPinOut(u8 high)
 {
 	if (high) 
 	{
@@ -121,7 +121,7 @@ void TestIoOut(u8 high)
 
 int main(void)
 {		
-    TestIoInt();
+    TestPinInt();
     Delay_init();
    	while(1)
     {

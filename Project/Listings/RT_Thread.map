@@ -116,12 +116,12 @@ Section Cross References
     main.o(i.Delay_init) refers to main.o(.data) for fac_us
     main.o(i.Delay_ms) refers to main.o(.data) for fac_ms
     main.o(i.Delay_us) refers to main.o(.data) for fac_us
-    main.o(i.TestIoInt) refers to scm4xx_gpio.o(i.GPIO_StructInit) for GPIO_StructInit
-    main.o(i.TestIoInt) refers to scm4xx_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
-    main.o(i.TestIoInt) refers to scm4xx_gpio.o(i.GPIO_Init) for GPIO_Init
-    main.o(i.TestIoOut) refers to scm4xx_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
-    main.o(i.TestIoOut) refers to scm4xx_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
-    main.o(i.main) refers to main.o(i.TestIoInt) for TestIoInt
+    main.o(i.TestPinInt) refers to scm4xx_gpio.o(i.GPIO_StructInit) for GPIO_StructInit
+    main.o(i.TestPinInt) refers to scm4xx_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    main.o(i.TestPinInt) refers to scm4xx_gpio.o(i.GPIO_Init) for GPIO_Init
+    main.o(i.TestPinOut) refers to scm4xx_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    main.o(i.TestPinOut) refers to scm4xx_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    main.o(i.main) refers to main.o(i.TestPinInt) for TestPinInt
     main.o(i.main) refers to main.o(i.Delay_init) for Delay_init
     main.o(i.main) refers to main.o(i.Delay_ms) for Delay_ms
     scm4xx_it.o(i.USBWakeUp_IRQHandler) refers to scm4xx_exti.o(i.EXTI_ClearIntPendingBit) for EXTI_ClearIntPendingBit
@@ -772,7 +772,7 @@ Removing Unused input sections from the image.
     Removing main.o(.revsh_text), (4 bytes).
     Removing main.o(.rrx_text), (6 bytes).
     Removing main.o(i.Delay_us), (96 bytes).
-    Removing main.o(i.TestIoOut), (36 bytes).
+    Removing main.o(i.TestPinOut), (36 bytes).
     Removing scm4xx_it.o(.rev16_text), (4 bytes).
     Removing scm4xx_it.o(.revsh_text), (4 bytes).
     Removing scm4xx_it.o(.rrx_text), (6 bytes).
@@ -973,7 +973,7 @@ Image Symbol Table
     SetSysClockTo168M                        0x080005c1   Thumb Code   222  system_scm4xx.o(i.SetSysClockTo168M)
     i.SysTick_CLKSourceConfig                0x080006ac   Section        0  misc.o(i.SysTick_CLKSourceConfig)
     i.SystemInit                             0x080006d4   Section        0  system_scm4xx.o(i.SystemInit)
-    i.TestIoInt                              0x0800075c   Section        0  main.o(i.TestIoInt)
+    i.TestPinInt                             0x0800075c   Section        0  main.o(i.TestPinInt)
     i.USBWakeUp_IRQHandler                   0x08000790   Section        0  scm4xx_it.o(i.USBWakeUp_IRQHandler)
     i.USB_HP_CAN1_TX_IRQHandler              0x0800079c   Section        0  scm4xx_it.o(i.USB_HP_CAN1_TX_IRQHandler)
     i.USB_LP_CAN1_RX0_IRQHandler             0x0800079e   Section        0  scm4xx_it.o(i.USB_LP_CAN1_RX0_IRQHandler)
@@ -1174,7 +1174,7 @@ Image Symbol Table
     SVC_Handler                              0x080005b5   Thumb Code     2  scm4xx_it.o(i.SVC_Handler)
     SysTick_CLKSourceConfig                  0x080006ad   Thumb Code    40  misc.o(i.SysTick_CLKSourceConfig)
     SystemInit                               0x080006d5   Thumb Code   110  system_scm4xx.o(i.SystemInit)
-    TestIoInt                                0x0800075d   Thumb Code    46  main.o(i.TestIoInt)
+    TestPinInt                               0x0800075d   Thumb Code    46  main.o(i.TestPinInt)
     USBWakeUp_IRQHandler                     0x08000791   Thumb Code    12  scm4xx_it.o(i.USBWakeUp_IRQHandler)
     USB_HP_CAN1_TX_IRQHandler                0x0800079d   Thumb Code     2  scm4xx_it.o(i.USB_HP_CAN1_TX_IRQHandler)
     USB_LP_CAN1_RX0_IRQHandler               0x0800079f   Thumb Code     2  scm4xx_it.o(i.USB_LP_CAN1_RX0_IRQHandler)
@@ -1279,7 +1279,7 @@ Memory Map of the image
     0x080005c0   0x080005c0   0x000000ec   Code   RO           15    i.SetSysClockTo168M  system_scm4xx.o
     0x080006ac   0x080006ac   0x00000028   Code   RO          170    i.SysTick_CLKSourceConfig  misc.o
     0x080006d4   0x080006d4   0x00000088   Code   RO           17    i.SystemInit        system_scm4xx.o
-    0x0800075c   0x0800075c   0x00000034   Code   RO         3371    i.TestIoInt         main.o
+    0x0800075c   0x0800075c   0x00000034   Code   RO         3371    i.TestPinInt        main.o
     0x08000790   0x08000790   0x0000000c   Code   RO         3432    i.USBWakeUp_IRQHandler  scm4xx_it.o
     0x0800079c   0x0800079c   0x00000002   Code   RO         3433    i.USB_HP_CAN1_TX_IRQHandler  scm4xx_it.o
     0x0800079e   0x0800079e   0x00000002   Code   RO         3434    i.USB_LP_CAN1_RX0_IRQHandler  scm4xx_it.o
@@ -1309,17 +1309,17 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       300         36          0          8          0       2299   main.o
-        40          0          0          0          0        598   misc.o
-        12          6          0          0          0        594   scm4xx_exti.o
-       294          0          0          0          0       2714   scm4xx_gpio.o
-        34          0          0          0          0       4339   scm4xx_it.o
+       300         36          0          8          0       2304   main.o
+        40          0          0          0          0        594   misc.o
+        12          6          0          0          0        590   scm4xx_exti.o
+       294          0          0          0          0       2706   scm4xx_gpio.o
+        34          0          0          0          0       4319   scm4xx_it.o
         68         10          0          0          0       1227   scm4xx_rcc.o
         64         26        380          0       1536        940   startup_scm402fb.o
-       500         62          0         20          0     235637   system_scm4xx.o
+       500         62          0         20          0     235633   system_scm4xx.o
 
     ----------------------------------------------------------------------
-      1314        140        412         28       1536     248348   Object Totals
+      1314        140        412         28       1536     248313   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -1370,8 +1370,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1608        156        412         28       1636     247192   Grand Totals
-      1608        156        412         28       1636     247192   ELF Image Totals
+      1608        156        412         28       1636     247157   Grand Totals
+      1608        156        412         28       1636     247157   ELF Image Totals
       1608        156        412         28          0          0   ROM Totals
 
 ==============================================================================
